@@ -20,23 +20,26 @@ jobs:
       - name: Set tag from release name
         run: echo "TAG_NAME=${{ github.event.release.tag_name }}" >> $GITHUB_ENV
 
+      # Configura o Docker Buildx
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
+      # Logando no DockerHub com seu nome de usuário e senha diretamente (não use secrets se não for necessário)
       - name: Log in to DockerHub
         uses: docker/login-action@v1
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+          username: feliperibeiro95  # Aqui você usa o nome de usuário fixo
+          password: ${{ secrets.DOCKER_PASSWORD }}  # Se desejar continuar usando secret para a senha
 
       # Mostra o nome da release para verificar
       - name: Show release name
         run: echo "feliperibeiro95/linux101-web:$TAG_NAME"
 
+      # Construção e envio para o Docker Hub
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
           push: true
           tags: feliperibeiro95/linux101-web:$TAG_NAME
-          context: ./linux101-web/Dockerfile
+          context: ./linux101-web
           platforms: linux/amd64,linux/arm64
