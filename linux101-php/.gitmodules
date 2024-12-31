@@ -1,0 +1,3 @@
+[submodule "public_html/*"]
+	path = public_html/*
+	url = git@github.com:felipe-e-ribeiro/linux101-web.git
