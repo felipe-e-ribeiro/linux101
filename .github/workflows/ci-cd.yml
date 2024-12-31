@@ -18,7 +18,7 @@ jobs:
 
       # Usa o nome da release para construir a tag
       - name: Set tag from release name
-        run: echo "TAG_NAME=${GITHUB_RELEASE_NAME}" >> $GITHUB_ENV
+        run: echo "TAG_NAME=${{ github.event.release.name }}" >> $GITHUB_ENV
 
       # Mostra o nome da release para verificar
       - name: Show release name
