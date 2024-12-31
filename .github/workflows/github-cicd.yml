@@ -26,8 +26,8 @@ jobs:
           
   build-and-push:
     needs: check-tag
-    steps:
     runs-on: ubuntu-latest
+    steps:  # Corrigido a indentação aqui
       # Configura o Docker Buildx
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
