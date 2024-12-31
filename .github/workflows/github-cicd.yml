@@ -40,6 +40,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: feliperibeiro95/linux101-web:$TAG_NAME
+          tags: feliperibeiro95/linux101-web:latest
           context: ./linux101-web
           platforms: linux/amd64,linux/arm64
