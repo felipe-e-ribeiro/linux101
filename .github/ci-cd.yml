@@ -4,7 +4,7 @@ on:
   release:
     types:
       - published  # Aciona quando um release é publicado
- 
+
 jobs:
   build:
     runs-on: ubuntu-latest
