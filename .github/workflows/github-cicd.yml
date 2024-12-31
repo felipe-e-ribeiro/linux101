@@ -32,7 +32,7 @@ jobs:
     steps:  # Corrigido a indentação aqui
       # Configura o Docker Buildx
       - name: Debug Path
-        run: echo "$(ls -l) local $(pwd)"
+        run: ls -l
     
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
