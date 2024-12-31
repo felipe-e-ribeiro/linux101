@@ -11,11 +11,14 @@ jobs:
     outputs:
       tag: ${{ steps.tag-check.outputs.tag }}
     steps:
+      # Etapa para fazer o checkout do código
       - name: Check out code
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # Garante que o repositório seja clonado com todas as tags e histórico
-      
+          fetch-depth: 0  # Garante que todo o histórico de commits e tags seja recuperado
+          submodules: true  # Inclui submódulos, se houver no repositório
+
+      # Etapa para verificar se a tag foi encontrada
       - name: Check for tag
         id: tag-check
         run: |
@@ -25,39 +28,34 @@ jobs:
             exit 1
           fi
           echo "tag=$TAG_NAME" >> $GITHUB_OUTPUT
-          
+
   build-and-push:
     needs: check-tag
     runs-on: ubuntu-latest
     steps:
-      # Debug: Verifique a estrutura de diretórios
-      - name: Show current directory
-        run: pwd  # Mostra o diretório de trabalho atual
-      
-      - name: List files in the repository
-        run: |
-          echo "Listing files in the repository..."
-          ls -l
-          
-      - name: Show directory structure
-        run: tree  # Exibe a estrutura de diretórios
+      # Checkout do código (novamente, caso o primeiro job não tenha sido suficiente)
+      - name: Check out code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          submodules: true
 
-      # Configura o Docker Buildx
+      # Configura Docker Buildx
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
-      # Logando no DockerHub com seu nome de usuário e senha diretamente (não use secrets se não for necessário)
+      # Loga no Docker Hub
       - name: Log in to DockerHub
         uses: docker/login-action@v1
         with:
-          username: feliperibeiro95  # Aqui você usa o nome de usuário fixo
-          password: ${{ secrets.DOCKER_PASSWORD }}  # Se desejar continuar usando secret para a senha
+          username: feliperibeiro95
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
-      # Mostra o nome da release para verificar
+      # Verifica o nome da release
       - name: Show release name
         run: echo "feliperibeiro95/linux101-web:${{ needs.check-tag.outputs.tag }}"
 
-      # Construção e envio para o Docker Hub
+      # Build e push da imagem Docker
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
