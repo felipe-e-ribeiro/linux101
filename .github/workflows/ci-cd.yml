@@ -10,31 +10,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out the repository at the tag
-        run: |
-          git fetch --tags  # Faz o fetch das tags do repositório remoto
-          git checkout ${GITHUB_REF#refs/tags/}  # Faz checkout da tag específica que acionou o workflow
+      # Etapa para fazer o checkout do repositório
+      - name: Check out the repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Garante que o repositório seja clonado com todas as tags e histórico
 
-      - name: Fail if no tag is found
-        run: |
-          if [[ ! "${GITHUB_REF}" =~ refs/tags/ ]]; then
-            echo "Error: No tag found, aborting pipeline."
-            exit 1
-          fi
+      # Usa o nome da release para construir a tag
+      - name: Set tag from release name
+        run: echo "TAG_NAME=${GITHUB_RELEASE_NAME}" >> $GITHUB_ENV
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
+      # Mostra o nome da release para verificar
+      - name: Show release name
+        run: echo "Release name is $TAG_NAME"
 
-      - name: Set up Docker Buildx for Multi-Architecture
-        run: |
-          docker buildx create --use
-
+      # Logando no Docker Hub (se necessário)
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build and Push Docker image for multiple architectures
+      # Exemplo de Build do Docker com o nome da release (TAG_NAME)
+      - name: Build and Push Docker image
         run: |
-          docker buildx build --platform linux/amd64,linux/arm64 --push -t ${{ secrets.DOCKER_USERNAME }}/linux101-web:${{ github.ref_name }} ./linux101-web
+          docker buildx build --platform linux/amd64,linux/arm64 --push -t ${{ secrets.DOCKER_USERNAME }}/linux101-web:$TAG_NAME ./linux101-web
