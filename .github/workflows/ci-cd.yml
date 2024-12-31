@@ -37,6 +37,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/linux101-web:$TAG_NAME
+          tags: feliperibeiro95/linux101-web:$TAG_NAME
           context: ./linux101-web/Dockerfile
           platforms: linux/amd64,linux/arm64
