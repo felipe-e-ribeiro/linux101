@@ -1,0 +1,41 @@
+
+php:
+  replicaCount: 1
+  image:
+    repository: feliperibeiro95/linux101-php
+    tag: "1.5.4"
+  port: 9000
+  livenessProbe:
+    tcpSocketPort: 9000
+    initialDelaySeconds: 5
+    periodSeconds: 10
+    failureThreshold: 3
+    successThreshold: 1
+    timeoutSeconds: 1
+    service:
+      port: 9000
+
+web:
+  replicaCount: 1
+  image:
+    repository: feliperibeiro95/linux101-web
+    tag: "1.5.4"
+  port: 80
+  livenessProbe:
+    execCommand: 
+      - wget
+      - -T2
+      - -O-
+      - linux101-web:80
+    failureThreshold: 3
+    periodSeconds: 60
+    successThreshold: 1
+    timeoutSeconds: 1
+    service:
+      port: 80
+
+hpa:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 50

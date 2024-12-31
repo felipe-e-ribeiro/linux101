@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: linux101-web
+spec:
+  replicas: {{ .Values.web.replicaCount }}
+  selector:
+    matchLabels:
+      app: linux101-web
+  template:
+    metadata:
+      labels:
+        app: linux101-web
+        version: {{ .Values.web.image.tag }}
+        web: linux101
+    spec:
+      containers:
+        - name: linux101web
+          image: "{{ .Values.web.image.repository }}:{{ .Values.web.image.tag }}"
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: VERSION
+              value: "{{ .Values.web.image.tag }}"
+          livenessProbe:
+            exec:
+              command: {{ .Values.web.livenessProbe.execCommand | toJson }}
+            failureThreshold: {{ .Values.web.livenessProbe.failureThreshold }}
+            periodSeconds: {{ .Values.web.livenessProbe.periodSeconds }}
+            successThreshold: {{ .Values.web.livenessProbe.successThreshold }}
+            timeoutSeconds: {{ .Values.web.livenessProbe.timeoutSeconds }}
+          ports:
+            - containerPort: {{ .Values.web.port }}
+              protocol: TCP
