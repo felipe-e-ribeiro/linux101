@@ -3,7 +3,7 @@ php:
   replicaCount: 1
   image:
     repository: feliperibeiro95/linux101-php
-    tag: "1.5.4"
+    tag: "1.5.5"
   port: 9000
   livenessProbe:
     tcpSocketPort: 9000
@@ -19,7 +19,7 @@ web:
   replicaCount: 1
   image:
     repository: feliperibeiro95/linux101-web
-    tag: "1.5.4"
+    tag: "1.5.5"
   port: 80
   livenessProbe:
     execCommand: 
