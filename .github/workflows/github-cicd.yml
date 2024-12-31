@@ -34,9 +34,11 @@ jobs:
       - name: Show current directory
         run: pwd  # Mostra o diretório de trabalho atual
       
-      - name: List directory contents
-        run: ls -l  # Exibe o conteúdo do diretório atual
-      
+      - name: List files in the repository
+        run: |
+          echo "Listing files in the repository..."
+          ls -l
+          
       - name: Show directory structure
         run: tree  # Exibe a estrutura de diretórios
 
