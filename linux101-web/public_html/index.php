@@ -1,7 +1,6 @@
 
 <!DOCTYPE html>
-<title>
-Server free01</title>
+<title>Ambiente de estudos Linux</title>
 <style>
 html { color-scheme: dark; }
 body { width: 60em; margin: 0 auto;
