@@ -31,7 +31,7 @@ jobs:
 
       # Mostra o nome da release para verificar
       - name: Show release name
-        run: echo "${{ secrets.DOCKER_USERNAME }}/linux101-web:$TAG_NAME"
+        run: echo "feliperibeiro95/linux101-web:$TAG_NAME"
 
       - name: Build and push
         uses: docker/build-push-action@v2
