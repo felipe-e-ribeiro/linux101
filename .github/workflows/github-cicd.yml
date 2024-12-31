@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Garante que o repositório seja clonado com todas as tags e histórico
       
       - name: Check for tag
         id: tag-check
@@ -29,6 +31,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:  # Corrigido a indentação aqui
       # Configura o Docker Buildx
+      - name: Debug Path
+        run: echo "$(ls -l) local $(pwd)"
+    
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
