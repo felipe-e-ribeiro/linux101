@@ -29,11 +29,18 @@ jobs:
   build-and-push:
     needs: check-tag
     runs-on: ubuntu-latest
-    steps:  # Corrigido a indentação aqui
+    steps:
+      # Debug: Verifique a estrutura de diretórios
+      - name: Show current directory
+        run: pwd  # Mostra o diretório de trabalho atual
+      
+      - name: List directory contents
+        run: ls -l  # Exibe o conteúdo do diretório atual
+      
+      - name: Show directory structure
+        run: tree  # Exibe a estrutura de diretórios
+
       # Configura o Docker Buildx
-      - name: Debug Path
-        run: ls -l
-    
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
