@@ -51,9 +51,10 @@ jobs:
           username: feliperibeiro95
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      # Verifica o nome da release
-      - name: Show release name
-        run: echo "feliperibeiro95/linux101-web:${{ needs.check-tag.outputs.tag }}"
+      - name: Copy Files
+        run: |
+        cp public_html/ linux101-php
+        cp public_html/ linux101-web
 
       # Build e push da imagem Docker
       - name: Build and push
@@ -61,7 +62,7 @@ jobs:
         with:
           push: true
           tags: feliperibeiro95/linux101-web:latest,feliperibeiro95/linux101-web:${{ needs.check-tag.outputs.tag }}
-          context: ./linux101-containers/Dockerfile-web
+          context: ./linux101-web
           platforms: linux/amd64,linux/arm64
 
       - name: Build and push
@@ -69,5 +70,5 @@ jobs:
         with:
           push: true
           tags: feliperibeiro95/linux101-php:latest,feliperibeiro95/linux101-php:${{ needs.check-tag.outputs.tag }}
-          context: ./linux101-containers/Dockerfile-php
+          context: ./linux101-php
           platforms: linux/amd64,linux/arm64
