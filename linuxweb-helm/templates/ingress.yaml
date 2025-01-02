@@ -27,3 +27,14 @@ spec:
                   number: {{ .port }}
           {{- end }}
     {{- end }}
+  {{- if and .Values.ingress.tls.enabled (not .Values.ingress.tls.disabled) }}
+  tls:
+    {{- range .Values.ingress.tls.config }}
+    - hosts:
+        {{- range .hosts }}
+        - {{ . }}
+        {{- end }}
+      secretName: {{ .secretName }}
+    {{- end }}
+  {{- end }}
+{{- end }}

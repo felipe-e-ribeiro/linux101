@@ -27,3 +27,9 @@ ingress:
           pathType: Prefix
           service: my-service
           port: 80
+  tls:
+    enabled: false
+    config:
+      - hosts:
+          - "example.com"
+        secretName: my-tls-secret
