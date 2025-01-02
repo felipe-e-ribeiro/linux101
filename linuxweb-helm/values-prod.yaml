@@ -3,14 +3,14 @@ php:
   replicaCount: 1
   image:
     repository: feliperibeiro95/linux101-php
-    tag: "1.5.6"
+    tag: "1.5.7"
   serviceName: linux101-php
 
 web:
   replicaCount: 1
   image:
     repository: feliperibeiro95/linux101-web
-    tag: "1.5.6"
+    tag: "1.5.7"
   serviceName: linux101-web
   livenessProbe:
     execCommand: 
