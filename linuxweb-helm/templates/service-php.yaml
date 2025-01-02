@@ -1,11 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: linux101-php
+  name: {{ .Values.php.serviceName }}
+  namespace: {{ .Values.namespace }}
 spec:
   ports:
     - port: {{ .Values.php.port }}
       targetPort: {{ .Values.php.port }}
   selector:
-    app: linux101-php
+    app: {{ .Values.php.serviceName }}
   type: ClusterIP

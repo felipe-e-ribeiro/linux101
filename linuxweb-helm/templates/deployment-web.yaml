@@ -1,21 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: linux101-web
+  name: {{ .Values.web.serviceName }}
+  namespace: {{ .Values.namespace }}
 spec:
   replicas: {{ .Values.web.replicaCount }}
   selector:
     matchLabels:
-      app: linux101-web
+      app: {{ .Values.web.serviceName }}
   template:
     metadata:
       labels:
-        app: linux101-web
+        app: {{ .Values.web.serviceName }}
         version: {{ .Values.web.image.tag }}
         web: linux101
     spec:
       containers:
-        - name: linux101web
+        - name: {{ .Values.web.serviceName }}
           image: "{{ .Values.web.image.repository }}:{{ .Values.web.image.tag }}"
           imagePullPolicy: IfNotPresent
           env:
@@ -31,3 +32,16 @@ spec:
           ports:
             - containerPort: {{ .Values.web.port }}
               protocol: TCP
+          volumeMounts:
+          - name: nginx-config
+            mountPath: /etc/nginx/conf.d/default.conf
+            subPath: nginx.conf
+          - name: public-html
+            mountPath: /public_html
+      volumes:
+      - name: nginx-config
+        configMap:
+          name: {{ .Release.Name }}-nginx-config
+      - name: public-html
+        configMap:
+          name: {{ .Release.Name }}-public-html        

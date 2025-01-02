@@ -1,0 +1,36 @@
+namespace: "dev"
+php:
+  replicaCount: 1
+  image:
+    repository: php
+    tag: "7.4-fpm-alpine"
+  serviceName: linux101-php-dev
+
+web:
+  replicaCount: 1
+  image:
+    repository: nginx
+    tag: "1.21.6-alpine"
+  serviceName: linux101-web-dev
+  livenessProbe:
+    execCommand: 
+      - wget
+      - -T2
+      - -O-
+      - linux101-web-dev:80
+    failureThreshold: 3
+    periodSeconds: 60
+    successThreshold: 1
+    timeoutSeconds: 1
+
+files:
+  public_html:
+    index_php: "files/public_html/index.php"
+    info_php: "files/public_html/info.php"
+
+
+hpa:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 50

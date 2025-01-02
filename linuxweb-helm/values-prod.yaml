@@ -1,0 +1,32 @@
+namespace: "default"
+php:
+  replicaCount: 1
+  image:
+    repository: php
+    tag: "7.4-fpm-alpine"
+  serviceName: linux101-php
+
+web:
+  replicaCount: 1
+  image:
+    repository: nginx
+    tag: "1.21.6-alpine"
+  serviceName: linux101-web
+  livenessProbe:
+    execCommand: 
+      - wget
+      - -T2
+      - -O-
+      - linux101-web:80
+    failureThreshold: 3
+    periodSeconds: 60
+    successThreshold: 1
+    timeoutSeconds: 1
+
+filesPath: "files/public_html-prod/*"
+
+hpa:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 50

@@ -1,34 +1,42 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: linux101-php
+  name: {{ .Values.php.serviceName }}
+  namespace: {{ .Values.namespace }}
 spec:
   replicas: {{ .Values.php.replicaCount }}
   selector:
     matchLabels:
-      app: linux101-php
+      app: {{ .Values.php.serviceName }}
   template:
     metadata:
       labels:
-        app: linux101-php
+        app: {{ .Values.php.serviceName }}
         version: {{ .Values.php.image.tag }}
         web: linux101
     spec:
       containers:
-        - name: linux101php
-          image: "{{ .Values.php.image.repository }}:{{ .Values.php.image.tag }}"
-          imagePullPolicy: IfNotPresent
-          env:
-            - name: VERSION
-              value: "{{ .Values.php.image.tag }}"
-          livenessProbe:
-            tcpSocket:
-              port: {{ .Values.php.livenessProbe.tcpSocketPort }}
-            initialDelaySeconds: {{ .Values.php.livenessProbe.initialDelaySeconds }}
-            periodSeconds: {{ .Values.php.livenessProbe.periodSeconds }}
-            failureThreshold: {{ .Values.php.livenessProbe.failureThreshold }}
-            successThreshold: {{ .Values.php.livenessProbe.successThreshold }}
-            timeoutSeconds: {{ .Values.php.livenessProbe.timeoutSeconds }}
-          ports:
-            - containerPort: {{ .Values.php.port }}
-              protocol: TCP
+      - name: {{ .Values.php.serviceName }}
+        image: "{{ .Values.php.image.repository }}:{{ .Values.php.image.tag }}"
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: VERSION
+          value: "{{ .Values.php.image.tag }}"
+        livenessProbe:
+          tcpSocket:
+            port: {{ .Values.php.livenessProbe.tcpSocketPort }}
+          initialDelaySeconds: {{ .Values.php.livenessProbe.initialDelaySeconds }}
+          periodSeconds: {{ .Values.php.livenessProbe.periodSeconds }}
+          failureThreshold: {{ .Values.php.livenessProbe.failureThreshold }}
+          successThreshold: {{ .Values.php.livenessProbe.successThreshold }}
+          timeoutSeconds: {{ .Values.php.livenessProbe.timeoutSeconds }}
+        ports:
+        - containerPort: {{ .Values.php.port }}
+          protocol: TCP
+        volumeMounts:
+        - name: public-html
+          mountPath: /public_html
+      volumes:
+      - name: public-html
+        configMap:
+          name: {{ .Release.Name }}-public-html
