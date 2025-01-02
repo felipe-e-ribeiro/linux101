@@ -27,4 +27,3 @@ spec:
                   number: {{ .port }}
           {{- end }}
     {{- end }}
-  {{- if .Values.ingress.tls }}
