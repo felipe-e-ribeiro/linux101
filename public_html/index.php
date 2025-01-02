@@ -1,19 +1,87 @@
 
 <!DOCTYPE html>
-<title>Ambiente de estudos Linux</title>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Server free01 - Ambiente de Estudos</title>
 <style>
-html { color-scheme: dark; }
-body { width: 60em; margin: 0 auto;
-font-family: Tahoma, Verdana, Arial, sans-serif; }
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    margin: 0;
+    padding: 0;
+    color: #333;
+  }
+  header {
+    background-color: #222;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+  }
+  .container {
+    max-width: 1490px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  h1 {
+    color: #444;
+    margin-top: 0;
+  }
+  p {
+    margin-bottom: 15px;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  li {
+    margin-bottom: 8px;
+  }
+  details {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  summary {
+    background-color: #f2f2f2;
+    padding: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  .challenge {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #222;
+    color: #fff;
+  }
 </style>
 </head>
 <body>
-<p>Este ambiente possui um HA baseado em servidores rodando em nginx com um LB.</p>
-<p>Este &eacute; o servidor:  </p>
-<li>srv-free01-felipe95</li>
-<h3>Estudos Linux</h3>
+<header>
+  <h1>Server free01 - Ambiente de Estudos</h1>
+  <p>Explorando o mundo do Linux e Redes</p>
+</header>
+
+<div class="container">
+<h2>Estudos Linux</h2>
 <details>
-  <summary>Tópico 01</summary>
+<summary>Tópico 01</summary>
 <ol>
 <li> Estrutura de diretório</li>
 <ul>
@@ -51,29 +119,27 @@ font-family: Tahoma, Verdana, Arial, sans-serif; }
 <li>Entendimento de permissão linux, significado e possíveis usos. (rwx)</li>
 <li>Entender diferença do elemento "x" em pastas e arquivos.            </li>
 </ul>
-<ol>
+</ol>
 <details>
 <summary>DESAFIO 01</summary>
- <p><input type="checkbox">  Criar um novo disco com ao menos 10 MB. OPCIONAL: Criar um lvm chamado lv_disco; </p>
- <p><input type="checkbox">  Criar uma partição no novo disco, e formata-lo em ext4. Em seguida monta-lo em /mnt/teste_deu_boa. Este ponto de montagem deve ser iniciado após um reboot. </p>
- <p><input type="checkbox">  Criar um novo usuário chamado tux e um novo grupo chamado de linux. </p>
- <p><input type="checkbox">  Tux deve ser membro de linux. </p>
- <p><input type="checkbox">  Alterar o diretório /mnt/teste_deu_boa para que apenas o grupo linux possa ler e executar. O owner do deve ser root. Nenhum outro usuário deve ter acesso algum a esta pasta. </p>
- <p><input type="checkbox">  Criar as pastas dir1, dir2 e dir3 dentro de /mnt/teste_deu_boa </p>
- <p><input type="checkbox">  Estas pastas (/mnt/teste_deu_boa/dir1, [...]) além da permissão de grupo, devem ter como owner o user tux;  </p>
- <p><input type="checkbox">  Com o usuário tux crie um arquivo dentro de dir2 chamado de run.sh e neste arquivo deve constar o conteudo abaixo. OBS: Teste o script para garantir que ele está rodando e trazendo a informação "Uhuul deu boa".: </p>
+ <p><input type="checkbox" id="checkbox11">  Criar um novo disco com ao menos 10 MB. OPCIONAL: Criar um lvm chamado lv_disco; </p>
+ <p><input type="checkbox" id="checkbox12">  Criar uma partição no novo disco, e formata-lo em ext4. Em seguida monta-lo em /mnt/teste_deu_boa. Este ponto de montagem deve ser iniciado após um reboot. </p>
+ <p><input type="checkbox" id="checkbox13">  Criar um novo usuário chamado tux e um novo grupo chamado de linux. </p>
+ <p><input type="checkbox" id="checkbox14">  Tux deve ser membro de linux. </p>
+ <p><input type="checkbox" id="checkbox15">  Alterar o diretório /mnt/teste_deu_boa para que apenas o grupo linux possa ler e executar. O owner do deve ser root. Nenhum outro usuário deve ter acesso algum a esta pasta. </p>
+ <p><input type="checkbox" id="checkbox16">  Criar as pastas dir1, dir2 e dir3 dentro de /mnt/teste_deu_boa </p>
+ <p><input type="checkbox" id="checkbox17">  Estas pastas (/mnt/teste_deu_boa/dir1, [...]) além da permissão de grupo, devem ter como owner o user tux;  </p>
+ <p><input type="checkbox" id="checkbox18">  Com o usuário tux crie um arquivo dentro de dir2 chamado de run.sh e neste arquivo deve constar o conteudo abaixo. OBS: Teste o script para garantir que ele está rodando e trazendo a informação "Uhuul deu boa".: </p>
 <textarea name="text" cols="25" rows="3">
 #!/bin/bash
 echo "Uhuul deu boa"
 </textarea>
- <p><input type="checkbox">  Dentro de dir3 criar um arquivo chamado de lista_dir, com uma saida do comando ls /mnt/teste_deu_boa. OPCIONAL: Pesquisar sobre stdin, stdout, stderr. </p>
- <p><input type="checkbox">  Após ter rodado com sucesso remova o usuário tux do grupo linux. OBS: Garanta e entenda o motivo que o usuário tux não consegue mais entrar em /mnt/teste_deu_boa; </p>
+ <p><input type="checkbox" id="checkbox19">  Dentro de dir3 criar um arquivo chamado de lista_dir, com uma saida do comando ls /mnt/teste_deu_boa. OPCIONAL: Pesquisar sobre stdin, stdout, stderr. </p>
+ <p><input type="checkbox" id="checkbox110">  Após ter rodado com sucesso remova o usuário tux do grupo linux. OBS: Garanta e entenda o motivo que o usuário tux não consegue mais entrar em /mnt/teste_deu_boa; </p>
 </details>
 </details>
-
-
-<details>
-  <summary>Tópico 02</summary>
+ <details>
+    <summary>Tópico 02</summary>
 <ol>
 <li>Processos/PID</li><ul>
 <li>Entender como o linux organiza e identifica os processos;</li>
@@ -101,14 +167,14 @@ echo "Uhuul deu boa"
 </ol>
 <details>
 <summary>DESAFIO 02</summary>
-<p><input type="checkbox"> Instalar o pacote httpd; </p>
-<p><input type="checkbox"> Iniciar o serviço (dexando ele ativo no boot); </p>
-<p><input type="checkbox"> Verifique qual porta que o serviço iniciou; </p>
-<p><input type="checkbox"> Realizar acesso no seu servidor e encontrar os logs de acesso; </p>
-<p><input type="checkbox"> Force um restart do serviço e encontre dentro dos logs do sistema operacional este restart; </p>
-<p><input type="checkbox"> Encontrar o arquivo de conf httpd.conf utilizando os comandos visto no topico 4; </p>
-<p><input type="checkbox"> Verifique quais PIDs estão atrelados para o serviço httpd. Realize um stop, valide novamente, e por fim, um start no serviço e compare os PIDs nestes 3 momentos; </p>
-<p><input type="checkbox"> Personalize a sua página web com um arquivo index.html com a informação: </p>
+<p><input type="checkbox" id="checkbox21"> Instalar o pacote httpd; </p>
+<p><input type="checkbox" id="checkbox22"> Iniciar o serviço (dexando ele ativo no boot); </p>
+<p><input type="checkbox" id="checkbox23"> Verifique qual porta que o serviço iniciou; </p>
+<p><input type="checkbox" id="checkbox24"> Realizar acesso no seu servidor e encontrar os logs de acesso; </p>
+<p><input type="checkbox" id="checkbox25"> Force um restart do serviço e encontre dentro dos logs do sistema operacional este restart; </p>
+<p><input type="checkbox" id="checkbox26"> Encontrar o arquivo de conf httpd.conf utilizando os comandos visto no topico 4; </p>
+<p><input type="checkbox" id="checkbox27"> Verifique quais PIDs estão atrelados para o serviço httpd. Realize um stop, valide novamente, e por fim, um start no serviço e compare os PIDs nestes 3 momentos; </p>
+<p><input type="checkbox" id="checkbox28"> Personalize a sua página web com um arquivo index.html com a informação: </p>
 <textarea name="text" cols="25" rows="3">
 Meu primeiro webserver, deu boa
 </textarea>
@@ -116,6 +182,45 @@ Meu primeiro webserver, deu boa
 </details>
 <details>
 <summary>Tópico 03</summary>
+<ol>
+<li>Endereço IP:</li><ul>
+<li>    Entender a definição de mascara de rede;</li>
+<li>    Entender padrões bloco de endereço privado, publico e reservado;</li>
+<li>    Estudar sobre uso de VLSM;</li></ul>
+<li>Serviços/conceitos de rede:</li><ul>
+<li>    Gateway;</li>
+<li>    DHCP;</li>
+<li>    DNS;</li></ul>
+<li>Ativos de rede:</li><ul>
+<li>    Firewall;</li>
+<li>    Switch;</li></ul>
+<li>Conceitos de serviços de rede:</li><ul>
+<li>    Modelo OSI;</li>
+<li>    Diferença de TCP e UDP;</li>
+<li>    Cabeçalho IP;</li></ul>
+<li>Roteamento:</li><ul>
+<li>    Explicar processo de roteamento;</li>
+<li>    Dinifir principais papeis em um processo de roteamento;</li></ul>
+<li>Comunicação local:</li><ul>
+<li>    Compreender uso de VLAN;</li>
+<li>    Entender quais são os pontos que VLAN pode ajudar em uma rede.</li></ul>
+</ol>
+
+<details>
+<summary>DESAFIO 03 - Fazer em Packet Tracert</summary>
+<p><input type="checkbox" id="checkbox31"> Criação de 2 redes internas - 192.168.0.0/24 e 192.168.10.0/24</p>
+<p><input type="checkbox" id="checkbox32"> Deixar a rede 192.168.10.0 como VLAN 10 no switch de acesso</p>
+<p><input type="checkbox" id="checkbox33"> As duas redes devem conter o mesmo gateway, que será um roteador na rede. </p>
+<p><input type="checkbox" id="checkbox34"> Este roteador terá uma ligação com um segundo roteador que está ligado por um link serial, que é 172.100.100.0/30. Deverá haver uma rota padrão destes dois roteadores </p>
+<p><input type="checkbox" id="checkbox35"> O segundo roteador deve conter uma rede local 8.8.8.8/24 em sua fast.</p>
+<p><input type="checkbox" id="checkbox36"> Na rede local, na rede 192.168.0.0 deve conter um servidor que será DHCP, DNS e WEB. Ele dará o endereço para 2 computadores.</p>
+<p><input type="checkbox" id="checkbox37"> Deverão ter mais 2 computadores na rede 192.168.10.0 (na vlan 10).</p>
+<p><input type="checkbox" id="checkbox38"> Todos os hosts devem se comunicar com todos. Interno com interno, interno com externos e assim por diante.</p>
+<p><img src="network_challange4.png"></p>
+</details>
+</details>
+<details>
+    <summary>Tópico 04</summary>
 <ol>
 <li>Firewall linux básico</li>
 <ul>
@@ -166,16 +271,42 @@ Meu primeiro webserver, deu boa
 </ul>
 </ol>
 <details>
-<summary>DESAFIO 03</summary>
-<p><input type="checkbox"> Alterar o selinux para disabled</p>
-<p><input type="checkbox"> Criar regra de INPUT que bloqueie a entrada da porta 80, de comunicação vinda do seu IP (acesse em seu computador o ip.me para validar)</p>
-<p><input type="checkbox"> Verifique qual o endereço de DNS que seu computador está usando. </p>
-<p><input type="checkbox"> Crie um bloqueio com destino aos DNSs (encontrados no topico anterior) com a porta do DNS;</p>
+<summary>DESAFIO 04</summary>
+<p><input type="checkbox" id="checkbox41"> Alterar o selinux para disabled</p>
+<p><input type="checkbox" id="checkbox42"> Criar regra de INPUT que bloqueie a entrada da porta 80, de comunicação vinda do seu IP (acesse em seu computador o ip.me para validar)</p>
+<p><input type="checkbox" id="checkbox43"> Verifique qual o endereço de DNS que seu computador está usando. </p>
+<p><input type="checkbox" id="checkbox44"> Crie um bloqueio com destino aos DNSs (encontrados no topico anterior) com a porta do DNS;</p>
 <li> Extra: Deixe esta regra ativa ao iniciar o servidor. OBS: Caso tenha algum problema de comunicação busque um novo DNS.</li>
-<p><input type="checkbox"> Libere no Oracle Cloud a porta 81 para qualquer origem.</p>
-<p><input type="checkbox"> Altere a porta do apache da 80 para a 81.</p>
-<p><input type="checkbox"> Alterar o DNS do seu servidor para o 8.8.8.8 e valide a resolução de nomes.</p>
-<p><input type="checkbox"> Dentro do seu servidor, faça com que o nome web-server seja resolvida com o ip interno. Em seguida para validar realize um curl para o nome web-server e garanta que houve o retorno correto.</p>
+<p><input type="checkbox" id="checkbox45"> Libere no Oracle Cloud a porta 81 para o seu IP Publico.</p>
+<p><input type="checkbox" id="checkbox46"> Altere a porta do apache da 80 para a 81.</p>
+<p><input type="checkbox" id="checkbox47"> Alterar o DNS do seu servidor para o 8.8.8.8 e valide a resolução de nomes.</p>
+<p><input type="checkbox" id="checkbox48"> Dentro do seu servidor, faça com que o nome web-server seja resolvida com o ip interno. Em seguida para validar realize um curl para o nome web-server e garanta que houve o retorno correto.</p>
 </details>
 </details>
+</div>
+
+<footer>
+  <p>&copy; 2023 Felipe E. Ribeiro - Estudos Linux Base</p>
+</footer>
+<script>
+// Função para verificar e salvar o estado dos checkboxes em localStorage
+function saveCheckboxState() {
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', function() {
+      localStorage.setItem(this.id, this.checked);
+    });
+
+    // Recuperar o estado salvo
+    const savedState = localStorage.getItem(checkbox.id);
+    if (savedState === 'true') {
+      checkbox.checked = true;
+    }
+  });
+}
+
+// Chamar a função após a página ser carregada
+window.addEventListener('load', saveCheckboxState);
+</script>
 </body>
+</html>

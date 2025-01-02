@@ -37,7 +37,7 @@ ingress:
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
   hosts:
-    - host: "linux102-dev.felipeeduribeiro.com.br"
+    - host: "linux102-dev.felipeduribeiro.com.br"
       paths:
         - path: /
           pathType: Prefix
@@ -47,5 +47,5 @@ ingress:
     enabled: true
     config:
       - hosts:
-          - "linux102-dev.felipeeduribeiro.com.br"
+          - "linux102-dev.felipeduribeiro.com.br"
         secretName: linux102-dev-cert
