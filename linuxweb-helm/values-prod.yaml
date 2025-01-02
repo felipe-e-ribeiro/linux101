@@ -2,15 +2,15 @@ namespace: "default"
 php:
   replicaCount: 1
   image:
-    repository: php
-    tag: "7.4-fpm-alpine"
+    repository: feliperibeiro95/linux101-php
+    tag: "1.5.6"
   serviceName: linux101-php
 
 web:
   replicaCount: 1
   image:
-    repository: nginx
-    tag: "1.21.6-alpine"
+    repository: feliperibeiro95/linux101-web
+    tag: "1.5.6"
   serviceName: linux101-web
   livenessProbe:
     execCommand: 
@@ -22,8 +22,6 @@ web:
     periodSeconds: 60
     successThreshold: 1
     timeoutSeconds: 1
-
-filesPath: "files/public_html-prod/*"
 
 hpa:
   enabled: true

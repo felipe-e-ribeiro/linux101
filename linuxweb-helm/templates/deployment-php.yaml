@@ -33,10 +33,3 @@ spec:
         ports:
         - containerPort: {{ .Values.php.port }}
           protocol: TCP
-        volumeMounts:
-        - name: public-html
-          mountPath: /public_html
-      volumes:
-      - name: public-html
-        configMap:
-          name: {{ .Release.Name }}-public-html
