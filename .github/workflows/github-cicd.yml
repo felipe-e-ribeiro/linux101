@@ -53,8 +53,8 @@ jobs:
 
       - name: Copy Files
         run: |
-        cp -rp public_html/ linux101-php/
-        cp -rp public_html/ linux101-web/
+          cp -rp public_html/ linux101-php/
+          cp -rp public_html/ linux101-web/
 
       # Build e push da imagem Docker
       - name: Build and push
