@@ -4,6 +4,7 @@ kind: Ingress
 metadata:
   name: {{ .Release.Name }}-ingress
   annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
     nginx.ingress.kubernetes.io/rewrite-target: {{ .Values.ingress.rewriteTarget | default "/" }}
     {{- if .Values.ingress.annotations }}
     {{- range $key, $value := .Values.ingress.annotations }}

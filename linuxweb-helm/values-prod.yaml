@@ -43,8 +43,8 @@ ingress:
           service: linux101-web
           port: 80
   tls:
-    enabled: false
+    enabled: true
     config:
       - hosts:
           - "linux102.felipeeduribeiro.com.br"
-        secretName: my-tls-secret
+        secretName: linux102-cert

@@ -44,8 +44,8 @@ ingress:
           service: linux101-web-dev
           port: 80
   tls:
-    enabled: false
+    enabled: true
     config:
       - hosts:
           - "linux102-dev.felipeeduribeiro.com.br"
-        secretName: my-tls-secret
+        secretName: linux102-dev-cert
