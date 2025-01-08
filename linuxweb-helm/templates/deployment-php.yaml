@@ -15,6 +15,7 @@ spec:
         version: {{ .Values.php.image.tag }}
         web: linux101
     spec:
+      serviceAccountName: {{ .Values.namespace }}-account
       containers:
       - name: {{ .Values.php.serviceName }}
         image: "{{ .Values.php.image.repository }}:{{ .Values.php.image.tag }}"

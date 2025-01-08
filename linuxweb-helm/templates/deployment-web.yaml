@@ -15,6 +15,7 @@ spec:
         version: {{ .Values.web.image.tag }}
         web: linux101
     spec:
+      serviceAccountName: {{ .Values.namespace }}-account
       containers:
         - name: {{ .Values.web.serviceName }}
           image: "{{ .Values.web.image.repository }}:{{ .Values.web.image.tag }}"
