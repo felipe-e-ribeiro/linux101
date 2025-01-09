@@ -17,6 +17,11 @@ spec:
     spec:
       serviceAccountName: {{ .Values.namespace }}-account
       containers:
+        - securityContext:
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+          runAsGroup: 101
+          seLinuxOptions: 's0:c101'
         - name: {{ .Values.web.serviceName }}
           image: "{{ .Values.web.image.repository }}:{{ .Values.web.image.tag }}"
           imagePullPolicy: IfNotPresent

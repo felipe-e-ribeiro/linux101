@@ -17,6 +17,11 @@ spec:
     spec:
       serviceAccountName: {{ .Values.namespace }}-account
       containers:
+      - securityContext:
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+          runAsGroup: 82
+          seLinuxOptions: 's0:c101'
       - name: {{ .Values.php.serviceName }}
         image: "{{ .Values.php.image.repository }}:{{ .Values.php.image.tag }}"
         imagePullPolicy: IfNotPresent
