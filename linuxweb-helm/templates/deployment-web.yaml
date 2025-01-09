@@ -22,7 +22,8 @@ spec:
             readOnlyRootFilesystem: true
             runAsNonRoot: true
             runAsGroup: 101
-            seLinuxOptions: 's0:c101'
+            seLinuxOptions:
+              level: 's0:c101'
           image: "{{ .Values.web.image.repository }}:{{ .Values.web.image.tag }}"
           imagePullPolicy: IfNotPresent
           env:
