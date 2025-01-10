@@ -6,7 +6,7 @@ metadata:
 data:
   nginx.conf: |  
     http {
-      listen 80;
+      listen 8080;
       server_name _;
       root /public_html;
       error_log /dev/stderr warn;

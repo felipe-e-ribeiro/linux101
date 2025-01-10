@@ -18,7 +18,7 @@ web:
       - wget
       - -T2
       - -O-
-      - linux101-web-dev:80
+      - linux101-web-dev:8080
     failureThreshold: 3
     periodSeconds: 60
     successThreshold: 1
