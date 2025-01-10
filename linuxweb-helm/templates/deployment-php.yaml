@@ -21,6 +21,7 @@ spec:
         securityContext:
           readOnlyRootFilesystem: true
           runAsNonRoot: true
+          runAsUser: 82
           runAsGroup: 82
           seLinuxOptions:
             level: 's0:c101'
