@@ -9,8 +9,8 @@ data:
       listen 8080;
       server_name _;
 
-      error_log /dev/stderr warn;
-      access_log /dev/stdout;
+      error_log /tmp/logs/nginx.log warn;
+      access_log /tmp/logs/nginx.log;
       root /public_html;
 
       location / {
