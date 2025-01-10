@@ -5,12 +5,12 @@ metadata:
   namespace: {{ .Values.namespace }}
 data:
   nginx.conf: |  
-    server {
+    http {
       listen 80;
       server_name _;
-      user nginx;
       root /public_html;
-  
+      error_log /dev/stderr warn;
+      access_log /dev/stdout;
       location / {
         index index.php index.html;
       }
