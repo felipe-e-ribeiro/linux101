@@ -4,25 +4,24 @@ metadata:
   name: {{ .Release.Name }}-nginx-config
   namespace: {{ .Values.namespace }}
 data:
-  nginx.conf: |  
-    http {
-     server {
-       listen 8080;
-       server_name _;
-       error_log /dev/stderr warn;
-       access_log /dev/stdout;
-       root /public_html;
-   
-       location / {
-         index index.php index.html;
-       }
-   
-       location ~* \.php$ {
-         fastcgi_pass {{ .Values.php.serviceName }}:{{ .Values.php.port }};
-         fastcgi_index index.php;
-         include fastcgi_params;
-         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-         fastcgi_param PATH_INFO $fastcgi_path_info;
-       }
-     }
+  nginx.conf: |
+    server {
+      listen 8080;
+      server_name _;
+
+      error_log /dev/stderr warn;
+      access_log /dev/stdout;
+      root /public_html;
+
+      location / {
+        index index.php index.html;
+      }
+
+      location ~* \.php$ {
+        fastcgi_pass linux101-php-dev:9000;
+        fastcgi_index index.php;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param PATH_INFO $fastcgi_path_info;
+      }
     }
