@@ -19,7 +19,7 @@ spec:
       containers:
         - name: {{ .Values.web.serviceName }}
           securityContext:
-            readOnlyRootFilesystem: true
+            readOnlyRootFilesystem: false
             runAsNonRoot: true
             runAsUser: 100
             runAsGroup: 101
