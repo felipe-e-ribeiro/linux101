@@ -26,7 +26,7 @@ spec:
             seLinuxOptions:
               level: 's0:c101'
           image: "{{ .Values.web.image.repository }}:{{ .Values.web.image.tag }}"
-          imagePullPolicy: Allways
+          imagePullPolicy: Always
           env:
             - name: VERSION
               value: "{{ .Values.web.image.tag }}"
