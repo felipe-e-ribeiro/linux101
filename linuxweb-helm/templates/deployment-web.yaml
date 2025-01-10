@@ -45,7 +45,7 @@ spec:
             mountPath: /etc/nginx/http.d/default.conf
             subPath: nginx.conf
           - name: nginx-logs
-            mountPath: /var/lib/nginx/logs
+            mountPath: /tmp/logs
       volumes:
       - name: nginx-config
         configMap:
