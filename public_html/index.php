@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Server free01 - Ambiente de Estudos</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
     <header>
@@ -240,6 +240,6 @@ Meu primeiro webserver, deu boa
         <p>&copy; 2023 Felipe E. Ribeiro - Estudos Linux Base</p>
     </footer>
 
-    <script src="assets/js/script.js"></script>
+    <script src="./script.js"></script>
 </body>
 </html>
