@@ -1,36 +1,86 @@
+
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Server free01 - Ambiente de Estudos</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Server free01 - Ambiente de Estudos</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    margin: 0;
+    padding: 0;
+    color: #333;
+  }
+  header {
+    background-color: #222;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+  }
+  .container {
+    max-width: 1490px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  h1 {
+    color: #444;
+    margin-top: 0;
+  }
+  p {
+    margin-bottom: 15px;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  li {
+    margin-bottom: 8px;
+  }
+  details {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  summary {
+    background-color: #f2f2f2;
+    padding: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  .challenge {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #222;
+    color: #fff;
+  }
+</style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1><i class="fas fa-server"></i> Server free01</h1>
-            <p>Ambiente de Estudos - Linux e Redes</p>
-        </div>
-    </header>
+<header>
+  <h1>Server free01 - Ambiente de Estudos</h1>
+  <p>Explorando o mundo do Linux e Redes</p>
+</header>
 
-    <nav class="sidebar">
-        <h3><i class="fas fa-book-open"></i> Tópicos</h3>
-        <ul class="nav-list">
-            <li class="nav-item"><i class="fas fa-folder-open"></i> Tópico 01</li>
-            <li class="nav-item"><i class="fas fa-terminal"></i> Tópico 02</li>
-            <li class="nav-item"><i class="fas fa-network-wired"></i> Tópico 03</li>
-            <li class="nav-item"><i class="fas fa-shield-alt"></i> Tópico 04</li>
-        </ul>
-        <div class="progress-bar">
-            <div class="progress"></div>
-        </div>
-    </nav>
-
-    <main class="main-content">
-        <div class="container">
-        <details>
+<div class="container">
+<h2>Estudos Linux</h2>
+<details>
 <summary>Tópico 01</summary>
 <ol>
 <li> Estrutura de diretório</li>
@@ -233,13 +283,30 @@ Meu primeiro webserver, deu boa
 <p><input type="checkbox" id="checkbox48"> Dentro do seu servidor, faça com que o nome web-server seja resolvida com o ip interno. Em seguida para validar realize um curl para o nome web-server e garanta que houve o retorno correto.</p>
 </details>
 </details>
-        </div>
-    </main>
+</div>
 
-    <footer>
-        <p>&copy; 2023 Felipe E. Ribeiro - Estudos Linux Base</p>
-    </footer>
+<footer>
+  <p>&copy; 2023 Felipe E. Ribeiro - Estudos Linux Base</p>
+</footer>
+<script>
+// Função para verificar e salvar o estado dos checkboxes em localStorage
+function saveCheckboxState() {
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', function() {
+      localStorage.setItem(this.id, this.checked);
+    });
 
-    <script src="assets/js/script.js"></script>
+    // Recuperar o estado salvo
+    const savedState = localStorage.getItem(checkbox.id);
+    if (savedState === 'true') {
+      checkbox.checked = true;
+    }
+  });
+}
+
+// Chamar a função após a página ser carregada
+window.addEventListener('load', saveCheckboxState);
+</script>
 </body>
 </html>
